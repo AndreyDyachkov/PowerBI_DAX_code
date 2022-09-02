@@ -1,4 +1,5 @@
 sprint_number = 
+// The string is like : "text, Sprint 10, text" OR "text, Sprint 100"
 // Let's find the position of the first letter in "Sprint" and the position of the comma after "Sprint" and calculate the lenght of the of the substring.
 VAR first_position =
     SEARCH ( "sprint", 'tag_table'[string_column],, BLANK () )
@@ -7,6 +8,6 @@ VAR last_position =
 VAR length =
     IF ( ISBLANK ( last_position ), 999, last_position - first_position ) // if last_position is blank then assign any large number, such as 999.
 
-
+// Return "Sprint" + a number    
 RETURN
     IFERROR ( MID ( 'tag_table'[string_column], first_position, length ), BLANK () )
