@@ -1,0 +1,12 @@
+sprint_number = 
+// Let's find the position of the first letter in "Sprint" and the position of the comma after "Sprint" and calculate the lenght of the of the substring.
+VAR first_position =
+    SEARCH ( "sprint", 'tag_table'[string_column],, BLANK () )
+VAR last_position =
+    IFERROR ( SEARCH ( ",", 'tag_table'[string_column], first_position ), BLANK () ) // if there is no comma (at the end of the string) or there is no first position then set a blank value
+VAR length =
+    IF ( ISBLANK ( last_position ), 999, last_position - first_position ) // if last_position is blank then assign any large number, such as 999.
+
+
+RETURN
+    IFERROR ( MID ( 'tag_table'[string_column], first_position, length ), BLANK () )
